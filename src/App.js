@@ -6,12 +6,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+        <h1>What do you want to make tonight?</h1>
+        <p className="Choices">
+          Asian
+          Fish
+          Italian
+          French
+          Vegan
+        </p>
+        <p className="Meals">
+          Meal #1
+          Meal #2
+          Meal #3
+          Meal #4
         </p>
       </div>
     );
