@@ -3,16 +3,28 @@ import Button from 'material-ui/Button';
 import './App.css';
 
 class App extends Component {
+
+  selectButton = () =>
+    console.log("Button selected!");
+
+  choices = [
+    "Asian",
+    "Fish",
+    "Italian",
+    "French",
+    "Vegan"
+  ];
+
+  listChoices = this.choices.map((choice) =>
+    <Button onClick={this.selectButton}>{choice}</Button>
+  );
+
   render() {
     return (
       <div className="App">
         <h1>What do you want to make tonight?</h1>
         <p className="Choices">
-          <Button>Asian</Button>
-          <Button>Fish</Button>
-          <Button>Italian</Button>
-          <Button>French</Button>
-          <Button>Vegan</Button>
+          {this.listChoices}
         </p>
         <p className="Meals">
           Meal #1
