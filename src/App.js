@@ -7,7 +7,7 @@ class App extends Component {
     super();
     this.state = {
       choices: [
-        { name: 'asian', isSelected: false },
+        { name: 'asian', isSelected: true },
         { name: 'fish', isSelected: false },
         { name: 'italian', isSelected: false },
         { name: 'sandwich', isSelected: false },
@@ -20,6 +20,12 @@ class App extends Component {
     { name: 'Spagetti Carbonara', tags: ['italian'] },
     { name: 'Cubanos', tags: ['sandwich'] },
   ]
+
+  selectedChoices = () =>
+    console.log(this.state.choices
+      .filter(choice => choice.isSelected === true)
+      .map(choice => choice.name)
+    );
 
   onClick = index => {
     let tmp = this.state.choices;
@@ -42,6 +48,9 @@ class App extends Component {
         {this.meals.map(meal =>
           <div key={meal.name}>{meal.name}</div>
         )}
+        </div>
+        <div>
+          {this.selectedChoices()}
         </div>
       </div>
     );
