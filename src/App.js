@@ -7,14 +7,19 @@ class App extends Component {
     super();
     this.state = {
       choices: [
-        { name: "Asian", isSelected: false },
-        { name: "Fish", isSelected: false },
-        { name: "Italian", isSelected: false },
-        { name: "French", isSelected: false },
-        { name: "Vegan", isSelected: false },
+        { name: 'asian', isSelected: false },
+        { name: 'fish', isSelected: false },
+        { name: 'italian', isSelected: false },
+        { name: 'sandwich', isSelected: false },
       ]
     };
   }
+
+  meals = [
+    { name: 'Asian Fish Tacos', tags: ['asian', 'fish'] },
+    { name: 'Spagetti Carbonara', tags: ['italian'] },
+    { name: 'Cubanos', tags: ['sandwich'] },
+  ]
 
   onClick = index => {
     let tmp = this.state.choices;
@@ -24,20 +29,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <h1>What do you want to make tonight?</h1>
-        <div className="Choices">
+        <div className='Choices'>
             {this.state.choices.map(( choice, index ) =>
-              <Button raised color={choice.isSelected ? "primary" : "default"} key={index} onClick={() => this.onClick(index)}>
+              <Button raised color={choice.isSelected ? 'primary' : 'default'} key={index} onClick={() => this.onClick(index)}>
                 {choice.name}
               </Button>
             )}
         </div>
-        <div className="Meals">
-          Meal #1
-          Meal #2
-          Meal #3
-          Meal #4
+        <div className='Meals'>
+        {this.meals.map(meal =>
+          <div key={meal.name}>{meal.name}</div>
+        )}
         </div>
       </div>
     );
