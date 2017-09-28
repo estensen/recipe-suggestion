@@ -10,9 +10,16 @@ class App extends Component {
         { name: 'asian', isSelected: true },
         { name: 'fish', isSelected: false },
         { name: 'italian', isSelected: false },
-        { name: 'sandwich', isSelected: false },
+        { name: 'sandwich', isSelected: true },
+      ],
+      filteredMeals: [
+
       ]
     };
+  }
+
+  componentDidMount() {
+    this.filterMeals();
   }
 
   meals = [
@@ -22,15 +29,31 @@ class App extends Component {
   ]
 
   selectedChoices = () =>
-    console.log(this.state.choices
+    this.state.choices
       .filter(choice => choice.isSelected === true)
-      .map(choice => choice.name)
-    );
+      .map(choice => choice.name);
+
+  filterMeals = () => {
+    let choices = this.selectedChoices()
+    let tmp = [];
+    this.meals.forEach(meal => {
+      console.log(meal.tags);
+      for (let i = 0; i < meal.tags.length; i++) {
+        console.log(choices.includes(meal.tags[i]));
+        if (choices.includes(meal.tags[i])) {
+          tmp.push(meal)
+          this.setState({ filteredMeals: tmp });
+          break;
+        }
+      }
+    })
+  }
 
   onClick = index => {
     let tmp = this.state.choices;
     tmp[index].isSelected = !tmp[index].isSelected;
     this.setState({ choices: tmp });
+    this.filterMeals()
   }
 
   render() {
@@ -45,12 +68,9 @@ class App extends Component {
             )}
         </div>
         <div className='Meals'>
-        {this.meals.map(meal =>
+        {this.state.filteredMeals.map(meal =>
           <div key={meal.name}>{meal.name}</div>
         )}
-        </div>
-        <div>
-          {this.selectedChoices()}
         </div>
       </div>
     );
