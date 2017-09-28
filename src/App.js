@@ -41,9 +41,10 @@ class App extends Component {
       for (let i = 0; i < meal.tags.length; i++) {
         console.log(choices.includes(meal.tags[i]));
         if (choices.includes(meal.tags[i])) {
-          tmp.push(meal)
-          this.setState({ filteredMeals: tmp });
-          break;
+          if (i === meal.tags.length - 1) {
+            tmp.push(meal)
+            this.setState({ filteredMeals: tmp });
+          }
         }
       }
     })
