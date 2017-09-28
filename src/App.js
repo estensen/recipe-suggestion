@@ -5,7 +5,6 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    // this.onClick.bind(this);
     this.state = {
       choices: [
         { name: "Asian", isSelected: false },
@@ -17,22 +16,29 @@ class App extends Component {
     };
   }
 
-  selectButton = () =>
-    console.log("Button selected!");
+  onClick = index => {
+    let tmp = this.state.choices;
+    tmp[index].isSelected = !tmp[index].isSelected;
+    this.setState({ choices: tmp });
+  }
 
   render() {
     return (
       <div className="App">
         <h1>What do you want to make tonight?</h1>
-        <p className="Choices">
-          {this.state.choices.map(( choice, index ) => <Button key={index} onClick={this.selectButton}>{choice.name}</Button>)}
-        </p>
-        <p className="Meals">
+        <div className="Choices">
+            {this.state.choices.map(( choice, index ) =>
+              <Button raised color={choice.isSelected ? "primary" : "default"} key={index} onClick={() => this.onClick(index)}>
+                {choice.name}
+              </Button>
+            )}
+        </div>
+        <div className="Meals">
           Meal #1
           Meal #2
           Meal #3
           Meal #4
-        </p>
+        </div>
       </div>
     );
   }
