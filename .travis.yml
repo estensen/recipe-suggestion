@@ -2,7 +2,12 @@ language: node_js
 node_js: node
 sudo: false
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.1.0
-  - export PATH="$HOME/.yarn/bin:$PATH"
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.1.0
+- export PATH="$HOME/.yarn/bin:$PATH"
 cache:
   yarn: true
+script: yarn build
+deploy:
+  provider: firebase
+  token:
+    secure: iYgtHpn7+50FitCDWXP7gi9uaIMlFSS/dm0HTjjB0uz62iEo/ErC62ITQKKsMQwNVxQglTOPldmUGj+EoNccKcfybnMBoVymMfT+TlJIztv0yzMvnKd5ygy3YsYUAC9+1qzMD8jBCEFx6S6grzD9EwwD6imNUvRByHA8ZbNNkrea7DRZQELxgvOumHCoxSlGXBHJ/d1l53tbsX02s9IiMJmVqHutrDowLl9o81/cEozCgD+yiJ0ehCmkB5Ft8rofGlNpDtQ9HFFbUnwZudBSlzMO3xZSntEJuD23nbHctQ+Y3gRd+xVxcqIU5MJvcT9gZ7dZn6oMDNSlUdqEjFdZJpE/swrAEn8qfjwGr0Z7k9BZ6iawFi0lCU2yWaVXO68xG00O5Ppp6fa1YLNhTsUHDN+dhT5cunusgR1+8DTnQO8dfmTkSW7pNbMjaoh9xuls/iXQUOS42umZSLvVoJmcI6PjPXbYuExhVI3ovFE3vCip52FFA+2OwC+AFK1pf8vW2uOkzD5hc75CSNV7VWqT8wTxzYl1E1D/fqn+7u3cZzHsvRMsu9mujm+iMg8ElX42z2YgbhXL4q3GWy6QfMy6ftENuiI6EKAZ6y+SIe82OqKfAVRqxLdFpWInG08lMkpaO73LCl1Uzf/aYFpjoDg1ZIOKp4D7dYmrqKoe+Ji9VNw=
