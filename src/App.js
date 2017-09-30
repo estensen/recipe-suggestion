@@ -36,18 +36,14 @@ class App extends Component {
   filterMeals = () => {
     let choices = this.selectedChoices()
     let tmp = [];
-    this.meals.forEach(meal => {
-      console.log(meal.tags);
-      for (let i = 0; i < meal.tags.length; i++) {
-        console.log(choices.includes(meal.tags[i]));
-        if (choices.includes(meal.tags[i])) {
-          if (i === meal.tags.length - 1) {
-            tmp.push(meal)
-            this.setState({ filteredMeals: tmp });
-          }
+    if (choices.length > 0) {
+      this.meals.forEach(meal => {
+        if (!choices.some(tag => meal.tags.indexOf(tag) === -1)) {
+          tmp.push(meal)
         }
-      }
-    })
+      })
+    }
+    this.setState({ filteredMeals: tmp });
   }
 
   onClick = index => {
